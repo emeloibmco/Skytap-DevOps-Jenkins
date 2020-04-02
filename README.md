@@ -18,6 +18,18 @@ Los webhooks de GitHub en Jenkins se usan para activar la compilación cada vez 
 - En Content type seleccione la opción _application/json_
 
 ### 3.Plugin de SSH
+A continuación, se creará la configuración del host dentro de la configuración principal de Jenkins. Para esto, ingrese a la página principal de Jenkins en donde dentro de la configuración del sistema encontrará la sección _Publish Over SSH_ aquí deberá pegar la clave privada no cifrada dentro del recuadro _key_. Adicionalmente, se deberán llenar los siguientes recuadros para SSH Server.
+
+- Passphrase: Frase de contraseña para la clave privada, si está encriptada
+- Name: Nombre del usuario que utilizará para conectarse al host.
+- Hostname: Nombre de host SSH o dirección IP.
+- Username: Nombre de usuario (mismo name)
+- Port: 22 (Este es el puerto predeterminado para SSH)
+- Timeout: 300000 (Tiempo de espera en milisegundos para las conexiones SSH)
+
+Una vez terminado guarde los cambios realizados.
+
+### 4.Conexión SSH con la máquina de producción
 Se instala SSH Server en la terminal de Ubuntu
 ```
 sudo apt-get install openssh-server
@@ -35,8 +47,6 @@ sudo adduser git #password
 su git
 mkdir .ssh
 ```
-
-### 4.Conexión SSH con la máquina de producción
 Se debe crear una clave SSH con el propósito de facilitar los inicios de sesión automatizados y sin contraseña entre ambas máquinas. Para generar la clave ssh utilice el sieguiente comando:
 ```sh
 ssh-keygen
