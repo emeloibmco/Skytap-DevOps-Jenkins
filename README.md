@@ -5,15 +5,17 @@ Se aprovisiona una máquina en skytap haciendo uso de la plantilla de _Jenkins v
 
 ### 1.Creación del proyecto
 Ingrese a la interfaz de jenkins mediante la IP o el DNS de la máquina por el puerto 8080, las credenciales las encontrará en skytap, en la sección VM settings -> credentials.
-Una vez ingrese sus credenciales seleccione _crear nueva tarea_ para crear un _proyecto libre_. Es importante que configure el origen del código fuente, para esto, seleccionamos _git_ y en el campo _Repository URL_ ingresamos la [dirección de nuestro repositorio](https://github.com/mayi29/js-jenkis).
+Una vez ingrese sus credenciales seleccione _crear nueva tarea_ para crear un _proyecto libre_. Es importante que configure el origen del código fuente, para esto, seleccionamos _git_ y en el campo _Repository URL_ ingresamos la [dirección de nuestro repositorio](https://github.com/mayi29/js-jenkis). No olvide activar la opción _"GitHub hook trigger for GITScm polling"_ dentro de las configuraciones de los _build triggers_.
+
 ### 2.Agregar un Webhook de GitHub a su pipeline de Jenkins
 Los webhooks de GitHub en Jenkins se usan para activar la compilación cada vez que un desarrollador confirma algo a la rama maestra. Para configurarlo tenga en cuenta los siguientes pasos:
 
-Vaya al repositorio de su proyecto.
-Vaya a "configuración" en la esquina derecha.
-Haga clic en "webhooks".
-Haga clic en "Agregar webhooks".
-Escriba la URL de carga útil como
+- Vaya al repositorio de su proyecto.
+- Vaya a "configuración" en la esquina derecha.
+- Haga clic en "webhooks".
+- Haga clic en "Agregar webhooks".
+- Agregue la payload URL y agregue al final /github-webhook para decirle a GitHub que es un webhook. payloadURL:`http://happymontalcini.ibmlatin.skytapdns.com/github-webhook`<br/>
+- En Content type seleccione la opción _application/json_
 
 ### 3.Plugin de SSH
 Se instala SSH Server en la terminal de Ubuntu
