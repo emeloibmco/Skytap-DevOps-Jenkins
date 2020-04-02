@@ -16,6 +16,23 @@ Haga clic en "Agregar webhooks".
 Escriba la URL de carga útil como
 
 ### 3.Plugin de SSH
+Se instala SSH Server en la terminal de Ubuntu
+```
+sudo apt-get install openssh-server
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa
+pass: ****
+```
+Una vez ya instalado el servidor OpenSSH se accede al repositorio, pero antes es importante otorgarle permisos permanentes a Jenkins de conectarse al repositorio gestionando las credenciales ssh de usuario. Es por esta razón que se creará la clave SSH para el usuario de Jenkins utilizando el siguiente comando:
+```
+sudo su-jenkins
+ssh-keygen -t rsa -b 2048
+```
+Para poder acceder al repositorio de forma constante se deberá crear un usuario, tal como se describe en los comando a continuación
+```
+sudo adduser git #password
+su git
+mkdir .ssh
+```
 
 ### 4.Conexión SSH con la máquina de producción
 Se debe crear una clave SSH con el propósito de facilitar los inicios de sesión automatizados y sin contraseña entre ambas máquinas. Para generar la clave ssh utilice el sieguiente comando:
